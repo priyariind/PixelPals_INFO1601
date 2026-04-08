@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="index.html">Browse</a>
+        <a href="genres.html">Genres</a>
+        <a href="#">Bookmarks</a>
+    </div>
+    <div class="nav-right">
+        <button id="loginBtn">Login</button>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="search-box">
+        <input type="text" id="genreSearchInput" placeholder="Search books...">
+        <button onclick="searchBooks()">Search</button>
+    </div>
+</section>
+
+
+<section class="genres-section">
+    <div id="genreList" class="genre-buttons"></div>
+</section>
+
+
+<section class="results-section">
+    <div id="resultsContainer" class="results-grid"></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

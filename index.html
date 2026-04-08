@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="index.html">Browse</a>
+        <a href="genres.html">Genres</a>
+        <a href="#">Bookmarks</a>
+    </div>
+    <div class="nav-right">
+        <button id="loginBtn">Login</button>
+    </div>
+</nav>
+
+
+<section class="hero">
+    <div class="search-box">
+        <p class="quote">"Insert something cool here"</p>
+        <input type="text" id="searchInput" placeholder="Search books">
+        <button onclick="searchBooks()">Search</button>
+    </div>
+</section>
+<section class="carousel-section">
+    <button class="carousel-btn left" onclick="scrollCarousel(-1)">◀</button>
+    
+    <div id="carouselContainer" class="carousel"></div>
+    
+    <button class="carousel-btn right" onclick="scrollCarousel(1)">▶</button>
+</section>
+
+
+<script src="script.js"></script>
+</body>
+</html>
