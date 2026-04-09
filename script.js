@@ -77,10 +77,12 @@ const genres = [
 function loadGenres() {
     const container = document.getElementById("genreList");
     if (!container) return;
+    container.innerHTML = "";
 
     genres.forEach(genre => {
         const btn = document.createElement("button");
         btn.textContent = genre;
+        btn.classList.add("genre-btn");
         btn.onclick = () => loadGenreBooks(genre);
         container.appendChild(btn);
     });

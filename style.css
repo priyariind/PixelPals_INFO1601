@@ -10,14 +10,45 @@ body {
 
 
 .navbar {
+    background-color: rgb(40, 44, 38);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 10px;
+    align-items: center;
+    padding: 20px;
     border-bottom: 1px solid #ccc;
 }
 
-.nav-left a {
+.nav-centre{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-right{
+    margin-bottom: 10px;
+}
+
+.nav-centre a {
     margin-right: 15px;
+    font: inherit;
+    background-color: #f0f0f0;
+    color: #242424;
+    border-radius: 0.5em;
+    font-size: 1.35rem;
+    padding: 0.3em 0.4em;
+    font-weight: 600;
+    text-shadow: 0 0.0625em 0 #fff;
+    box-shadow: 1px 5px 0px 0px #cacaca;
+    cursor: pointer;
+    transition: 0.15s ease;
+    text-decoration: none;
+}
+
+.nav-centre a:active{
+    translate: 0 0.225em;
+    box-shadow: 0.5px 2.5px 0px 0px #cacaca;
 }
 
 .hero {
@@ -114,4 +145,48 @@ body {
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+}
+
+#loginBtn{
+    font: inherit;
+    background-color: #f0f0f0;
+    border: 0px;
+    color: #242424;
+    border-radius: 0.5em;
+    font-size: 1.35rem;
+    padding: 0.3em 0.4em;
+    font-weight: 600;
+    text-shadow: 0 0.0625em 0 #fff;
+    box-shadow: 1px 5px 0px 0px #cacaca;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+#loginBtn:active {
+    translate: 0 0.225em;
+    box-shadow: 0.5px 2.5px 0px 0px #cacaca;
+}
+
+.genre-btn{
+    font: inherit;
+    background-color: rgb(40, 44, 38);
+    border: 0px;
+    color: #e6e0e0;
+    border-radius: 0.5em;
+    font-size: 1.2rem;
+    padding: 0.1em 0.4em;
+    font-weight: 400;
+    text-shadow: 0 0.0625em 0 #fff;
+    box-shadow: 1px 5px 0px 0px rgb(64, 66, 62);
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.genre-btn:active{
+    translate: 0 0.225em;
+    box-shadow: 0.5px 2.5px 0px 0px rgb(64, 66, 62);
+}
+
+#genreSearchInput{
+    
 }
