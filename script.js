@@ -1,9 +1,15 @@
 const API_URL = "https://openlibrary.org/search.json";
 
-//fetchign
+//fetching
 async function fetchBooks(query) {
     const res = await fetch(`${API_URL}?q=${query}`);
     const data = await res.json();
+
+    //Checks to see if array is empty
+    if (!data.docs || data.docs.length === 0) {
+    return [];
+    }
+
     return data.docs.slice(0, 50);
 }
 
@@ -12,10 +18,18 @@ async function searchBooks() {
         document.getElementById("searchInput") ||
         document.getElementById("genreSearchInput");
 
+    if (!input) return;
+
     const query = input.value.trim();
     if (!query) return;
 
     const books = await fetchBooks(query);
+
+    if (books.length === 0) {
+        displayNoResults(query);
+        return;
+    }
+
     displayBooks(books);
 }
 
@@ -30,6 +44,16 @@ function displayBooks(books) {
         const card = createBookCard(book);
         container.appendChild(card);
     });
+}
+
+//Diplays no data was found for a specific search
+function displayNoResults(query) {
+    const container = 
+        document.getElementById("carouselContainer") ||
+        document.getElementById("resultsContainer");
+
+    container.innerHTML = `
+    <p>No results found for "<strong>${query}</strong>"</p>`;
 }
 
 //book cards
