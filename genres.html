@@ -41,21 +41,27 @@
 </section>
 
 <div class="modal" id="login-modal">
-    <div class="modal-content">
-        <h3>Login</h3>
+        <div class="modal-content">
+            <div class="modal-top-right">
+                <button onclick="closeLogin()" id="cancelBtn" >X</button>
+            </div>
 
-        <input type="text" id="username" placeholder="Enter Username">
-        <br>
-        <input type="email" id="email" placeholder="Enter Email">
-        <br>
-        <input type="password" id="password" placeholder="Enter Password">
-        <br>
-        <br>
-        <button onclick="login()">Login</button>
-        <button onclick="closeLogin()">Cancel</button>
 
+            <div class="modal-centre">
+            <h3>Login</h3>
+
+            <input type="text" id="username" placeholder="Enter Username">
+            <br>
+            <input type="email" id="email" placeholder="Enter Email">
+            <br>
+            <input type="password" id="password" placeholder="Enter Password">
+            <br>
+            <br>
+            <button onclick="login()" id="loginBtn">Login</button>
+            </div>
+
+        </div>
     </div>
-</div>
 
 <script src="script.js"></script>
 </body>

@@ -77,8 +77,8 @@ function createBookCard(book) {
         <div class="book-info">
             <p><strong>${book.title}</strong></p>
             <p>${author}</p>
-            <button onclick="removeBookmark('${book.key}')">Remove</button>
-            <button onclick='bookmarkBook(${JSON.stringify(book)})'>Bookmark</button>
+            <button onclick="removeBookmark('${book.key}')" class = "bookmark-btn">Remove</button>
+            <button onclick='bookmarkBook(${JSON.stringify(book)})' class = "bookmark-btn">Bookmark</button>
         </div>
     `;
 
