@@ -13,12 +13,14 @@
     <div class="nav-left">
         <a href="index.html">Browse</a>
         <a href="genres.html">Genres</a>
-        <a href="#">Bookmarks</a>
+        <a href="bookmarks.html" >Bookmarks</a>
     </div>
-    <div class="nav-right">
-        <button id="loginBtn">Login</button>
+    <div class="nav-right" id="nav-right">
+        <button id="loginBtn" onclick="openLogin()">Login</button>
     </div>
 </nav>
+
+
 
 
 <section class="hero">
@@ -36,7 +38,22 @@
     <button class="carousel-btn right" onclick="scrollCarousel(1)">▶</button>
 </section>
 
+<div class="modal" id="login-modal">
+    <div class="modal-content">
+        <h3>Login</h3>
 
+        <input type="text" id="username" placeholder="Enter Username">
+        <br>
+        <input type="email" id="email" placeholder="Enter Email">
+        <br>
+        <input type="password" id="password" placeholder="Enter Password">
+        <br>
+        <br>
+        <button onclick="login()">Login</button>
+        <button onclick="closeLogin()">Cancel</button>
+
+    </div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>

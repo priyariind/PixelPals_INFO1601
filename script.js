@@ -117,8 +117,81 @@ async function loadGenreBooks(genre) {
     displayBooks(books);
 }
 
+//clicking login button to open login popup
+function openLogin(){
+
+    document.getElementById("login-modal").style.display = "flex";
+    
+}
+
+//cancelling login
+function closeLogin(){
+
+    document.getElementById("login-modal").style.display = "none";
+}
+
+//login form
+function login(){
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+
+    if (username ==="" || email === ""){
+        alert("Please fill in all needed fields");
+        return;
+    }
+
+    //https://www.w3schools.com/js/js_json_stringify.asp
+    const user = {username, email};
+    localStorage.setItem("user", JSON.stringify(user));
+
+    closeLogin();
+    updateNavbar();
+}
+
+//changing login button to username when logged in
+function updateNavbar(){
+
+    const nav = document.getElementById("nav-right");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+
+    if (user){
+
+        nav.innerHTML = `
+            <div class="user-menu">
+                <button>${user.username}</button>
+                <div class="dropdown">
+                    <button onclick="logout()">Logout</button>
+                </div>
+            </div>
+        
+        `;
+
+    }
+    else {
+        nav.innerHTML = `
+         <button id="loginBtn" onclick="openLogin()">Login</button>
+        `;
+
+    }
+
+}
+
+function logout(){
+    
+    localStorage.removeItem("user");
+    updateNavbar();
+}
+
+
+
+
+
+
+
 
 window.onload = () => {
     loadGenres();
+    updateNavbar();
     fetchBooks("popular").then(displayBooks);
 };
