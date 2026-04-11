@@ -77,7 +77,7 @@ function createBookCard(book) {
         <div class="book-info">
             <p><strong>${book.title}</strong></p>
             <p>${author}</p>
-            <button onclick="bookmarkBook('${book.key}')">Bookmark</button>
+            <button onclick="bookmarkBook('${book.key}')" class = "bookmark-btn">Bookmark</button>
         </div>
     `;
 

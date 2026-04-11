@@ -313,3 +313,23 @@ body {
     box-shadow: 1px 5px 0px 0px #cacaca;
     cursor: auto;
 }
+
+.bookmark-btn{
+    font: inherit;
+    background-color: #c9a57d;
+    border: 0px;
+    color: #ffffff;
+    border-radius: 0.5em;
+    font-size: 1.35rem;
+    padding: 0.3em 0.4em;
+    font-weight: 600;
+    text-shadow: 0 0.0625em 0 #ffeded;
+    box-shadow: 1px 5px 0px 0px #e0cfb9;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.bookmark-btn:active {
+    translate: 0 0.225em;
+    box-shadow: 0.5px 2.5px 0px 0px #cacaca;
+}
