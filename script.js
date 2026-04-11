@@ -77,7 +77,8 @@ function createBookCard(book) {
         <div class="book-info">
             <p><strong>${book.title}</strong></p>
             <p>${author}</p>
-            <button onclick="bookmarkBook('${book.key}')" class = "bookmark-btn">Bookmark</button>
+            <button onclick="removeBookmark('${book.key}')">Remove</button>
+            <button onclick='bookmarkBook(${JSON.stringify(book)})'>Bookmark</button>
         </div>
     `;
 
@@ -159,7 +160,7 @@ function updateNavbar(){
 
         nav.innerHTML = `
             <div class="user-menu">
-                <button>${user.username}</button>
+                <button>Hi, ${user.username}!</button>
                 <div class="dropdown">
                     <button onclick="logout()">Logout</button>
                 </div>
@@ -183,12 +184,102 @@ function logout(){
     updateNavbar();
 }
 
+//bookmarking
+function bookmarkBook(book){
+    
+    const user = localStorage.getItem("user");
+
+    if (!user) {
+        alert("Please log in to use bookmarking!");
+        return;
+    }
+
+   let bookmarks = [];
+
+    try {
+        const stored = localStorage.getItem("bookmarks");
+        if (stored) {
+            bookmarks = JSON.parse(stored);
+        }
+    } catch (e) {
+        bookmarks = [];
+    }
+
+    const exists = bookmarks.find(b => b.key === book.key);
+    if (exists){
+        alert("Already in Bookmarks!");
+        return;
+    }
+
+    bookmarks.push(book);
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+    alert("Bookmarked!");
+
+}
+
+function loadBookmarks(){
+
+    const container = document.getElementById("bookmark-container");
+
+    if (!container){
+        return;
+    }
+
+    let bookmarks = [];
+
+    try {
+
+        const stored = localStorage.getItem("bookmarks");
+        if (stored) {
+            bookmarks = JSON.parse(stored);
+
+        }
+    
+    }
+    catch (e){
+        bookmarks = [];
+    }
+
+    container.innerHTML = "";
+
+    if (stored.length === 0) {
+        container.innerHTML = "<p>No bookmarks yet</p>";
+        return;
+    }
+
+    stored.forEach (book => {
+        const card = createBookCard(book, true);
+        container.appendChild(card);
+    });
+}
 
 
 
 
+function removeBookmark(bookKey){
+    let bookmarks = [];
+
+    try{
+
+        const stored = localStorage.getItem("bookmarks");
+
+        if (stored){
+            bookmarks = JSON.parse(stored);
+        }
+    }
+    catch(e){
+        bookmarks = [];
+    }
+
+    bookmarks = bookmarks.filter(book => book.key !== bookKey);
+
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+    loadBookmarks()
 
 
+}
 
 window.onload = () => {
     loadGenres();
