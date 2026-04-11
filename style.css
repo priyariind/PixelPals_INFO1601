@@ -134,7 +134,7 @@ body {
     min-height: 325px;
     max-height: 400px;
 
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
 
     display: flex;
@@ -248,7 +248,7 @@ body {
 
 .genre-btn{
     font: inherit;
-    background-color: rgb(40, 44, 38);
+    background-color: #a78a68;
     border: 0px;
     color: #e6e0e0;
     border-radius: 0.5em;
@@ -256,7 +256,7 @@ body {
     padding: 0.1em 0.4em;
     font-weight: 400;
     text-shadow: 0 0.0625em 0 #fff;
-    box-shadow: 1px 5px 0px 0px rgb(64, 66, 62);
+    box-shadow: 1px 5px 0px 0px  #e0cfb9;
     cursor: pointer;
     transition: 0.15s ease;
 }
@@ -298,6 +298,7 @@ body {
     text-shadow: 0 0.0625em 0 #fff;
     box-shadow: 1px 5px 0px 0px #cacaca;
     cursor: auto;
+    width: 500px;
 }
 
 #genreSearchInput{
@@ -312,11 +313,12 @@ body {
     text-shadow: 0 0.0625em 0 #fff;
     box-shadow: 1px 5px 0px 0px #cacaca;
     cursor: auto;
+    width: 500px;
 }
 
 .bookmark-btn{
     font: inherit;
-    background-color: #c9a57d;
+    background-color:#c49b6d;
     border: 0px;
     color: #ffffff;
     border-radius: 0.5em;
