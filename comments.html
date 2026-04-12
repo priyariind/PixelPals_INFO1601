@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Comments</title>
+</head>
+<body>
+
+<nav class="navbar">
+    <h1>Bookly</h1>
+    <div class="nav-centre">
+        <a href="index.html">Browse</a>
+        <a href="genres.html">Genres</a>
+        <a href="bookmarks.html" >Bookmarks</a>
+    </div>
+    <div class="nav-right" id="nav-right">
+        <button id="loginBtn" onclick="openLogin()">Login</button>
+    </div>
+</nav>
+
+<section class = "main-comment">
+    <button onclick="goBack()" id="btn">← Back</button>
+<section class = "book-data">
+
+<h2 id="bookTitle"></h2>
+<img id="bookCover">
+<p id="bookAuthor"></p>
+</section>
+
+
+<div id="commentsContainer">
+    <h2>Comments</h2>
+
+<div class="comment-input-box">
+    <input type="text" id="commentInput" placeholder="Write a comment">
+    <button onclick="addComment()" id="btn">Post</button>
+</div>
+
+    <table class="comment-table">
+    <tbody id="commentsTable"></tbody>
+    </table>
+</div>
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>

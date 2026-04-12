@@ -332,7 +332,7 @@ cancelBtn:active {
     font: inherit;
     background-color: #a78a68;
     border: 0px;
-    color: #e6e0e0;
+    color: #ffffff;
     border-radius: 0.5em;
     font-size: 1.2rem;
     padding: 0.1em 0.4em;
@@ -398,7 +398,7 @@ cancelBtn:active {
     width: 500px;
 }
 
-.bookmark-btn{
+.card-btn{
     font: inherit;
     background-color:#c49b6d;
     border: 0px;
@@ -413,7 +413,111 @@ cancelBtn:active {
     transition: 0.15s ease;
 }
 
-.bookmark-btn:active {
+.card-btn:active {
     translate: 0 0.225em;
     box-shadow: 0.5px 2.5px 0px 0px #cacaca;
+}
+
+
+#commentsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-input-box {
+    display: flex;
+    gap: 10px; 
+}
+
+.comment-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comment-row {
+    background-color:  rgb(179, 212, 162);
+    text-align:center;
+}
+
+.comment-row:nth-child(even){
+    background-color: rgb(151, 151, 182)
+}
+
+.comment-row td{
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 20px;
+    color: #f0f0f0;
+    text-shadow: 0 0.0625em 0 #242020;
+}
+
+#commentInput{
+    font: inherit;
+    background-color: #f0f0f0;
+    border: 0px;
+    color: #242424;
+    border-radius: 0.5em;
+    font-size: 1.35rem;
+    padding: 0.3em 0.4em;
+    font-weight: 600;
+    text-shadow: 0 0.0625em 0 #fff;
+    box-shadow: 1px 5px 0px 0px #cacaca;
+    cursor: auto;
+    width: 500px;
+    margin-bottom: 10px;
+}
+
+#btn{
+    font: inherit;
+    background-color: #f0f0f0;
+    border: 0px;
+    color: #242424;
+    border-radius: 0.5em;
+    font-size: 1.35rem;
+    padding: 0.3em 0.4em;
+    font-weight: 600;
+    text-shadow: 0 0.0625em 0 #fff;
+    box-shadow: 1px 5px 0px 0px #cacaca;
+    cursor: pointer;
+    transition: 0.15s ease;
+    margin-bottom: 10px;
+}
+
+#btn:active {
+    translate: 0 0.225em;
+    box-shadow: 0.5px 2.5px 0px 0px #cacaca;
+}
+
+.main-comment{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.book-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-data img{
+    width: 150px;
+    min-height: 180px;
+    max-height: 175px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+#commentsTable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(179, 212, 162);
+    font-size: 20px;
+    color: #f8f7f7;
+    text-shadow: 0 0.0625em 0 #242020;
 }

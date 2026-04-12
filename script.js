@@ -1,3 +1,16 @@
+//Gets book data and comments from url when on comments page ONLY
+const params = new URLSearchParams(window.location.search);
+
+const book = params.get("book")
+    ? JSON.parse(decodeURIComponent(params.get("book")))
+    : null;
+
+if (window.location.pathname.includes("comments.html") && book) {
+    loadBookInfo();
+    loadComments(book.key);
+}
+
+
 const API_URL = "https://openlibrary.org/search.json";
 
 //fetching
@@ -77,10 +90,20 @@ function createBookCard(book) {
         <div class="book-info">
             <p><strong>${book.title}</strong></p>
             <p>${author}</p>
-            <button onclick="removeBookmark('${book.key}')" class = "bookmark-btn">Remove</button>
-            <button onclick='bookmarkBook(${JSON.stringify(book)})' class = "bookmark-btn">Bookmark</button>
-        </div>
+            <button onclick="removeBookmark('${book.key}')" class = "card-btn">Remove</button>
+            <button onclick='bookmarkBook(${JSON.stringify(book)})' class = "card-btn">Bookmark</button>
+            </div>
     `;
+
+    const commentBtn = document.createElement("button");
+    commentBtn.textContent = "Comments";
+    commentBtn.className = "card-btn";
+
+    commentBtn.addEventListener("click", () => {
+        openComments(book);
+    });
+
+    div.querySelector(".book-info").appendChild(commentBtn);
 
     return div;
 }
@@ -116,6 +139,17 @@ function loadGenres() {
 async function loadGenreBooks(genre) {
     const books = await fetchBooks(genre);
     displayBooks(books);
+}
+
+function requireLogin() {
+    const user = localStorage.getItem("user");
+
+    if (!user) {
+        openLogin();
+        return false;
+    }
+
+    return true;
 }
 
 //clicking login button to open login popup
@@ -281,8 +315,112 @@ function removeBookmark(bookKey){
 
 }
 
+//Opens comments page
+function openComments(book) {
+    const url =
+        "comments.html?book=" + encodeURIComponent(JSON.stringify(book));
+
+    if (!requireLogin()) {
+        return; // stop if not logged in
+    }
+
+
+    window.location.href = url;
+}
+
+//loads book information when on comments page
+function loadBookInfo() {
+    document.getElementById("bookTitle").textContent = book.title;
+
+    document.getElementById("bookAuthor").textContent =
+        book.author_name?.[0] || "Unknown Author";
+
+    const cover = document.getElementById("bookCover");
+
+    if (book.cover_i) {
+        cover.src =
+            "https://covers.openlibrary.org/b/id/" + book.cover_i + "-M.jpg";
+    } else {
+        cover.src = "https://via.placeholder.com/150x200";
+    }
+
+}
+
+function loadComments(bookKey) {
+    const table = document.getElementById("commentsTable");
+
+    let comments = JSON.parse(localStorage.getItem(bookKey)) || [];
+
+    table.innerHTML = "";
+
+    if (comments.length === 0) {
+        table.innerHTML = `
+            <tr>
+                <td>No comments yet</td>
+            </tr>
+        `;
+        return;
+    }
+
+    comments.forEach(comment => {
+        const row = document.createElement("tr");
+        row.classList.add("comment-row");
+
+        const cell = document.createElement("td");
+
+        cell.innerHTML = `
+            <strong>${comment.username}:</strong> ${comment.text}
+        `;
+
+        row.appendChild(cell);
+        table.appendChild(row);
+    });
+}
+
+
+// add comment
+function addComment() {
+    const input = document.getElementById("commentInput");
+    const text = input.value.trim();
+
+    if (text === "") return;
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+        alert("Please log in to comment!");
+        return;
+    }
+
+    let comments = JSON.parse(localStorage.getItem(book.key)) || [];
+
+    const commentObj = {
+        text: text,
+        username: user.username
+    };
+
+    comments.push(commentObj);
+
+    localStorage.setItem(book.key, JSON.stringify(comments));
+
+    input.value = "";
+
+    loadComments(book.key);
+}
+
+//returns to html page from comments page
+function goBack() {
+    window.location.href = "index.html";
+}
+
 window.onload = () => {
-    loadGenres();
     updateNavbar();
-    fetchBooks("popular").then(displayBooks);
+
+    if (window.location.pathname.includes("comments.html") && book) {
+        loadComments(book.key);
+        loadBookInfo && loadBookInfo(); // if you have it
+    } else {
+        loadGenres();
+        fetchBooks("popular").then(displayBooks);
+    }
 };
