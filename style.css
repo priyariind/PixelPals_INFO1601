@@ -441,7 +441,6 @@ cancelBtn:active {
 .comment-table {
     width: 100%;
     border-collapse: collapse;
-    display: flex;
     justify-content: center;
 }
 
@@ -461,6 +460,9 @@ cancelBtn:active {
     font-size: 20px;
     color: #f0f0f0;
     text-shadow: 0 0.0625em 0 #242020;
+    white-space: normal;       
+    overflow-wrap: break-word; 
+    word-break: break-word;
 }
 
 #commentInput{
@@ -523,8 +525,9 @@ cancelBtn:active {
 
 #commentsTable{
     display: flex;
-    max-width: 600px;
+    width: 600px;
     display: table;
+    table-layout: fixed;
     border-radius: 10px;
     padding: 5px;
     font-size: 20px;
@@ -552,7 +555,6 @@ cancelBtn:active {
     transform: translateY(0);
 }
 
-/* optional variants */
 .toast.success {
     background: #4CAF50;
 }
