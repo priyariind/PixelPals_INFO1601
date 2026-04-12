@@ -213,7 +213,7 @@ function bookmarkBook(book){
     const user = localStorage.getItem("user");
 
     if (!user) {
-        alert("Please log in to use bookmarking!");
+        openLogin();
         return;
     }
 
@@ -266,39 +266,54 @@ function loadBookmarks(){
 
     container.innerHTML = "";
 
+    const validBooks = bookmarks.filter(book => book && book.title);
+
     if (bookmarks.length === 0) {
         container.innerHTML = "<p>No bookmarks yet</p>";
         return;
     }
+    
 
     bookmarks.forEach(book => {
         const card = createBookmarkCard(book);
-        container.appendChild(card);
+
+        if (card){
+            container.appendChild(card);
+        }
+        
     });
 }
 
 function createBookmarkCard(book) {
+
+    if(!book || !book.title){
+
+        return null;
+    }
     const div = document.createElement("div");
     div.className = "book-card";
+    
 
     let coverUrl = "https://via.placeholder.com/150x200";
     if (book.cover_i) {
         coverUrl = "https://covers.openlibrary.org/b/id/" + book.cover_i + "-M.jpg";
     }
 
-    let author = "Unknown Author";
+    let author = "";
     if (book.author_name && book.author_name.length > 0) {
-        author = book.author_name[0];
+        author = `<p>${book.author_name[0]}</p>`;
+        
     }
 
     div.innerHTML = `
         <img src="${coverUrl}">
         
         <div class="book-info">
-            <p><strong>${book.title}</strong></p>
+            <p><strong>${book.title|| ""}</strong></p>
             <p>${author}</p>
-            <button onclick="removeBookmark('${book.key}')" class = "bookmark-btn">Remove</button>
-            <button onclick='bookmarkBook(${JSON.stringify(book)})' class = "bookmark-btn">Bookmark</button>
+            <button onclick="removeBookmark('${book.key}')" class = "card-btn">Remove</button>
+           
+            
         </div>
     `;
 
@@ -323,6 +338,8 @@ function removeBookmark(bookKey){
     bookmarks = bookmarks.filter(book => book.key !== bookKey);
 
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+    alert("Bookmark Removed!");
 
     loadBookmarks()
 
@@ -426,12 +443,14 @@ function goBack() {
     window.location.href = "index.html";
 }
 
-if (document.getElementById("bookmark-container")) {
-    loadBookmarks();
-}
+
 
 window.onload = () => {
     updateNavbar();
+
+    if (document.getElementById("bookmark-container")) {
+        loadBookmarks();
+    }
 
     if (window.location.pathname.includes("comments.html") && book) {
         loadComments(book.key);
