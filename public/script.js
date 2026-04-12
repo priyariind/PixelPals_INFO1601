@@ -134,6 +134,7 @@ async function loadGenreBooks(genre) {
     displayBooks(books);
 }
 
+
 function requireLogin() {
     const user = localStorage.getItem("user");
 
