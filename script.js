@@ -214,6 +214,7 @@ function bookmarkBook(book){
 
     if (!user) {
         openLogin();
+        showToast("Please log in first!", "error");
         return;
     }
 
@@ -230,14 +231,14 @@ function bookmarkBook(book){
 
     const exists = bookmarks.find(b => b.key === book.key);
     if (exists){
-        alert("Already in Bookmarks!");
+        showToast("Already in Bookmarks!", "error");
         return;
     }
 
     bookmarks.push(book);
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
 
-    alert("Bookmarked!");
+    showToast("Bookmarked!", "success");
 
 }
 
@@ -339,11 +340,30 @@ function removeBookmark(bookKey){
 
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
 
-    alert("Bookmark Removed!");
-
+    showToast("Bookmark removed!", "success");
     loadBookmarks()
 
 
+}
+
+function showToast(message, type = "default") {
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add("show");
+    }, 10);
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 3000);
 }
 
 //Opens comments page
@@ -352,7 +372,8 @@ function openComments(book) {
         "comments.html?book=" + encodeURIComponent(JSON.stringify(book));
 
     if (!requireLogin()) {
-        return; // stop if not logged in
+        showToast("Please log in first!", "error");
+        return; 
     }
 
 
@@ -419,13 +440,13 @@ function addComment() {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
-        alert("Please log in to comment!");
+        showToast("Please log in first!", "error");
         return;
     }
 
     const commentObj = {
         username: user.username,
-        text: text   // ONLY raw message
+        text: text   
     };
 
     let comments = JSON.parse(localStorage.getItem(book.key)) || [];
@@ -442,8 +463,6 @@ function addComment() {
 function goBack() {
     window.location.href = "index.html";
 }
-
-
 
 window.onload = () => {
     updateNavbar();

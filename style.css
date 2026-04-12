@@ -531,3 +531,32 @@ cancelBtn:active {
     color: #f8f7f7;
     text-shadow: 0 0.0625em 0 #242020;
 }
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #222;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* optional variants */
+.toast.success {
+    background: #4CAF50;
+}
+
+.toast.error {
+    background: #e74c3c;
+}
