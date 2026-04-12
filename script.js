@@ -5,12 +5,6 @@ const book = params.get("book")
     ? JSON.parse(decodeURIComponent(params.get("book")))
     : null;
 
-if (window.location.pathname.includes("comments.html") && book) {
-    loadBookInfo();
-    loadComments(book.key);
-}
-
-
 const API_URL = "https://openlibrary.org/search.json";
 
 //fetching
@@ -417,25 +411,26 @@ function addComment() {
         return;
     }
 
-    let comments = JSON.parse(localStorage.getItem(book.key)) || [];
-
     const commentObj = {
-        text: text,
-        username: user.username
+        username: user.username,
+        text: text   // ONLY raw message
     };
+
+    let comments = JSON.parse(localStorage.getItem(book.key)) || [];
 
     comments.push(commentObj);
 
     localStorage.setItem(book.key, JSON.stringify(comments));
 
     input.value = "";
-
     loadComments(book.key);
 }
 
 //returns to html page from comments page
 function goBack() {
     window.location.href = "index.html";
+}
+
 if (document.getElementById("bookmark-container")) {
     loadBookmarks();
 }
