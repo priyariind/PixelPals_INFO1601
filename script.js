@@ -213,7 +213,7 @@ function bookmarkBook(book){
     const user = localStorage.getItem("user");
 
     if (!user) {
-        alert("Please log in to use bookmarking!");
+        openLogin();
         return;
     }
 
