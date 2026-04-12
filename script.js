@@ -186,14 +186,9 @@ function updateNavbar(){
 
     if (user){
 
-        nav.innerHTML = `
-            <div class="user-menu">
-                <button>Hi, ${user.username}!</button>
-                <div class="dropdown">
-                    <button onclick="logout()">Logout</button>
-                </div>
-            </div>
-        
+        nav.innerHTML = ` 
+                <h2>Hi, ${user.username}!</h2>
+                <button onclick="logout()" id="loginBtn" >Logout</button>
         `;
 
     }
