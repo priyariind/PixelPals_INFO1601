@@ -84,13 +84,12 @@ function createBookCard(book) {
         <div class="book-info">
             <p><strong>${book.title}</strong></p>
             <p>${author}</p>
-            <button onclick="removeBookmark('${book.key}')" class = "card-btn">Remove</button>
             <button onclick='bookmarkBook(${JSON.stringify(book)})' class = "card-btn">Bookmark</button>
             </div>
     `;
 
     const commentBtn = document.createElement("button");
-    commentBtn.textContent = "Comments";
+    commentBtn.textContent = "Comment";
     commentBtn.className = "card-btn";
 
     commentBtn.addEventListener("click", () => {
