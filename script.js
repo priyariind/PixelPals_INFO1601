@@ -277,19 +277,44 @@ function loadBookmarks(){
 
     container.innerHTML = "";
 
-    if (stored.length === 0) {
+    if (bookmarks.length === 0) {
         container.innerHTML = "<p>No bookmarks yet</p>";
         return;
     }
 
-    stored.forEach (book => {
-        const card = createBookCard(book, true);
+    bookmarks.forEach(book => {
+        const card = createBookmarkCard(book);
         container.appendChild(card);
     });
 }
 
+function createBookmarkCard(book) {
+    const div = document.createElement("div");
+    div.className = "book-card";
 
+    let coverUrl = "https://via.placeholder.com/150x200";
+    if (book.cover_i) {
+        coverUrl = "https://covers.openlibrary.org/b/id/" + book.cover_i + "-M.jpg";
+    }
 
+    let author = "Unknown Author";
+    if (book.author_name && book.author_name.length > 0) {
+        author = book.author_name[0];
+    }
+
+    div.innerHTML = `
+        <img src="${coverUrl}">
+        
+        <div class="book-info">
+            <p><strong>${book.title}</strong></p>
+            <p>${author}</p>
+            <button onclick="removeBookmark('${book.key}')" class = "bookmark-btn">Remove</button>
+            <button onclick='bookmarkBook(${JSON.stringify(book)})' class = "bookmark-btn">Bookmark</button>
+        </div>
+    `;
+
+    return div;
+}
 
 function removeBookmark(bookKey){
     let bookmarks = [];
@@ -411,6 +436,8 @@ function addComment() {
 //returns to html page from comments page
 function goBack() {
     window.location.href = "index.html";
+if (document.getElementById("bookmark-container")) {
+    loadBookmarks();
 }
 
 window.onload = () => {
