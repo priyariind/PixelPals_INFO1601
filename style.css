@@ -45,7 +45,7 @@ body {
 .nav-right{
     margin-bottom: 10px;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     gap: 10px;
     margin-bottom: 10px;
 }
@@ -428,6 +428,9 @@ cancelBtn:active {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .comment-input-box {
@@ -445,6 +448,7 @@ cancelBtn:active {
 .comment-row {
     background-color:  rgb(179, 212, 162);
     text-align:center;
+    display: table-row;
 }
 
 .comment-row:nth-child(even){
@@ -471,7 +475,8 @@ cancelBtn:active {
     text-shadow: 0 0.0625em 0 #fff;
     box-shadow: 1px 5px 0px 0px #cacaca;
     cursor: auto;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     margin-bottom: 10px;
 }
 
@@ -518,9 +523,8 @@ cancelBtn:active {
 
 #commentsTable{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    max-width: 600px;
+    display: table;
     border-radius: 10px;
     padding: 5px;
     font-size: 20px;
