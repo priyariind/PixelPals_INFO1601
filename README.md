@@ -1,4 +1,4 @@
-Bookly - PixelPals_INFO1601
+# Bookly - PixelPals_INFO1601
 INFO1601 Project
 
 Members:
